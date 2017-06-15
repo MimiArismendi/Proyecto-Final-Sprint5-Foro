@@ -16,28 +16,35 @@ var cargarTemas = function () {
 }
 
 var crearTema = function (tema) {
-var mensaje = tema.content;
-var autor = tema.author_name;
+    var mensaje = tema.content;
+    var autor = tema.author_name;
 
-  // creamos la fila
+  // creando la fila
   var $tr = $("<tr />");
   // creamos la celda del mensaje
   var $mensajeTd = $("<td />"); 
-  $mensajeTd.text(mensaje);
-  // creamos la celda del autor
+  var $linkTema = $("<a />");
+    
+  $linkTema.text(mensaje)
+  $linkTema.attr("href", "verResponses.html")
+  //$mensajeTd.text(mensaje);
+  $mensajeTd.append($linkTema);
+  $mensajeTd.attr('data-url', tema.id);
+    
+  // creando la celda del autor
   var $autorTd = $("<td />");
   $autorTd.text(autor);
     
-  /*// creamos la celda de respuestas
+  /*// creando la celda de respuestas
   var $respuestasTd = $("<td />");
   $respuestasTd.text(respuestas)    */
        
-  // agregamos las celdas a la fila
+  // agregando las celdas a la fila
   $tr.append($mensajeTd);
   $tr.append($autorTd);
   //$tr.append($respuestasTd);
 
-  // agregamos filas a la tabla
+  // agregando filas a la tabla
   $topicsList.append($tr);
 };
 
@@ -56,4 +63,3 @@ var agregarTema = function (e) {
 };
 
 $(document).ready(cargarPagina);
-

@@ -10,12 +10,8 @@ var cargarPagina = function() {
 };
 
 var cargarTemas = function () {
-    $.getJSON(api.url, function(response){
-    var autor = response.author_name;
-    var mensaje = response.content;
-      
-    $("#content").text(mensaje);
-    $("#author_name").text(autor);
+    $.getJSON(api.url, function(temas){
+    temas.forEach(crearTema);
   });
 }
 
@@ -26,7 +22,7 @@ var autor = tema.author_name;
   // creamos la fila
   var $tr = $("<tr />");
   // creamos la celda del mensaje
-  var $mensajeTd = $("<td />");
+  var $mensajeTd = $("<td />"); 
   $mensajeTd.text(mensaje);
   // creamos la celda del autor
   var $autorTd = $("<td />");
